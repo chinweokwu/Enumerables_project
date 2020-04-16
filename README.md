@@ -21,9 +21,9 @@
 
 👤 **Paul Morah**
 
-- Github: [@peterrobert](https://github.com/peterrobert)
-- Twitter: [@ptahwambui93](https://twitter.com/Ptahwambui93)
-- Linkedin: [Peter Robert Ndungu](https://www.linkedin.com/in/peter-rob-ndungu/)
+- Github: [@githubhandle](https://github.com/chinweokwu)
+- Twitter: [@twitterhandle](https://twitter.com/Morah89820846)
+- Linkedin: [linkedin](https://www.linkedin.com/in/paul-morah-285b63172/)
 
 ## 🤝 Contributing
 
