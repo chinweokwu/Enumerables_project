@@ -1,11 +1,10 @@
 module Enumerable
   # each
   def my_each
-    result = self.map do |element|
-      yield element 
+    for i in self
+      yield i
     end
-    result
-  end
+    end
 
   # each_with_index
   def my_each_with_index
@@ -17,12 +16,12 @@ module Enumerable
 
   # select
   def my_select
-    arr = []
-    self.my_each do |element|
-      arr << element if  yield(elememt)
+    result = []
+    for i in self
+      result << i if yield(i)
     end
-    arr
-  end
+    result 
+   end
 
   # all
   def my_all?
@@ -42,7 +41,9 @@ module Enumerable
 
   # negated
   def my_none?
-    !(self.my_all? {|item| yield(item)})
+    self.my_each do |element|
+      yield(element)
+    end
   end
 
   # count 
@@ -52,7 +53,7 @@ module Enumerable
     if element
       to_a.my_each do |e|
         arr << e if e == element
-    else
+      else
       to_a.my_each do |e|
         arr << e if yield(e)
     end
@@ -71,17 +72,47 @@ module Enumerable
   # inject iterator
   def my_inject
     accmulator = self[0]
-    my_each do |e|
-      accmulator = yield(accmulator, current_value)
+    my_each do |i|
+      accmulator += i 
     end
     accmulator
   end
 end
 
-num = ->(e) { e * 2 }
-p arr.my_map(&num)
+num = Lambda {|element| element * 2 }
+puts arr.my_map(&num)
 
 def multiply_els(arr)
   arr.my_inject { |accmulator, current_value| accmulator * current_value}
 end
 puts multiply_els([2, 4, 5])
+
+# arr = [1,2,3,4,5]
+# arr = [4, 'hey', 2, true, :job]
+# arr.my_each
+# arr.my_each_with_index { |element, index| puts "#{index}: #{element}"}
+
+# arr = [1..20]
+# arr.my_select do |i|
+#    if i % 2 == 0 
+#     result << i
+#    end
+# end
+
+# arr = [4, 'hey', 2, true, :job]
+# puts arr.my_all {|element| element.is_a? string}
+
+# arr = [4, 'hey', 2, true, :job]
+# puts arr.my_any {|element| element.is_a? string}
+
+# arr = [4, 'hey', 2, true, :job]
+# puts arr.my_none |element| 
+  # if element.is_a? string
+  #   return false
+  # else return true
+  # end
+# end
+
+# arr = [1,2,3,4,5]
+# puts arr.my_inject
+
