@@ -1,14 +1,14 @@
 module Enumerable
   # each
   def my_each
-    for i in self
+    each do |i|
       yield i
     end
-    end
+  end
 
   # each_with_index
   def my_each_with_index
-    result = self.map do |element, index|
+    result = map do |element, index|
       yield "#{index}: #{element} "
     end
     result
@@ -17,15 +17,15 @@ module Enumerable
   # select
   def my_select
     result = []
-    for i in self
+    each do |i|
       result << i if yield(i)
     end
-    result 
-   end
+    result
+  end
 
   # all
   def my_all?
-    self.my_each do |elememt|
+    my_each do |_elememt|
       return false unless yield(element)
     end
     true
@@ -33,7 +33,7 @@ module Enumerable
 
   # any
   def my_any?
-    self.my_each do |elememt|
+    my_each do |_elememt|
       return true if yield(element)
     end
     false
@@ -41,26 +41,29 @@ module Enumerable
 
   # negated
   def my_none?
-    self.my_each do |element|
+    my_each do |element|
       yield(element)
     end
   end
 
-  # count 
+  # count
   def my_count(element = false)
     return length if elememt == false && !block_given?
+
     arr = []
     if element
       to_a.my_each do |e|
         arr << e if e == element
-      else
+      end
+    else
       to_a.my_each do |e|
         arr << e if yield(e)
+      end
     end
     arr.length
   end
 
-  # map 
+  # map
   def my_map(&procs)
     arr = []
     my_each do |element|
@@ -73,17 +76,17 @@ module Enumerable
   def my_inject
     accmulator = self[0]
     my_each do |i|
-      accmulator += i 
+      accmulator += i
     end
     accmulator
   end
 end
 
-num = Lambda {|element| element * 2 }
+num = Lambda { |element| element * 2 }
 puts arr.my_map(&num)
 
 def multiply_els(arr)
-  arr.my_inject { |accmulator, current_value| accmulator * current_value}
+  arr.my_inject { |accmulator, current_value| accmulator * current_value }
 end
 puts multiply_els([2, 4, 5])
 
@@ -94,7 +97,7 @@ puts multiply_els([2, 4, 5])
 
 # arr = [1..20]
 # arr.my_select do |i|
-#    if i % 2 == 0 
+#    if i % 2 == 0
 #     result << i
 #    end
 # end
@@ -106,13 +109,12 @@ puts multiply_els([2, 4, 5])
 # puts arr.my_any {|element| element.is_a? string}
 
 # arr = [4, 'hey', 2, true, :job]
-# puts arr.my_none |element| 
-  # if element.is_a? string
-  #   return false
-  # else return true
-  # end
+# puts arr.my_none |element|
+# if element.is_a? string
+#   return false
+# else return true
+# end
 # end
 
 # arr = [1,2,3,4,5]
 # puts arr.my_inject
-
