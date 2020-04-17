@@ -1,37 +1,36 @@
 module Enumerable
-  # each
+  # each method: would print out each of the element in an array
   def my_each
-    each do |i|
+    for i in self
       yield i
     end
   end
 
-  # each_with_index
+  # each_with_index method: would give each of the element an index
   def my_each_with_index
-    result = map do |element, index|
-      yield "#{index}: #{element} "
+    my_each do |element|
+      yield(element, index(element))
     end
-    result
   end
 
-  # select
+  # select method: would only select elements that passed the condition
   def my_select
     result = []
-    each do |i|
+    my_each do |i|
       result << i if yield(i)
     end
     result
   end
 
-  # all
+  # all method: return true or false if all conditions are meet.
   def my_all?
-    my_each do |_elememt|
+    my_each do |elememt|
       return false unless yield(element)
     end
     true
   end
 
-  # any
+  # any  method: return true or false if any conditions are meet.
   def my_any?
     my_each do |_elememt|
       return true if yield(element)
