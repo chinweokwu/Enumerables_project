@@ -1,20 +1,28 @@
 module Enumerable # a generic method to repaet the values of any enumerable:helps in the reuse of methods in other mehtods
   # my_each methods
+  # rubocop:disable RuleByName
   def my_each
     return to_enum(__callee__) unless block_given?
-
+      # linter issues: linter tries to convert for to each and prints error in linter
+      # pls consider it. 
     for i in self
-      yield i
+      yield i 
     end
   end
+  # rubocop:enable RuleByName
 
   # my_each_with_index
   def my_each_with_index
     return to_enum(__callee__) unless block_given?
 
-    my_each do |element|
-      yield(element, index(element))
+    arr = to_a
+    size = arr.length
+    x = 0
+    until x == size
+      yield(arr[x], x)
+      x += 1
     end
+    self
   end
 
   # my_select method
@@ -55,13 +63,13 @@ module Enumerable # a generic method to repaet the values of any enumerable:help
 
   # my_any
   def my_any?(arg = nil)
-    bool = true
+    bool = false
     if block_given? && arg.nil?
-      my_each { |val| bool = true unless yield(val) }
+      my_each { |val| bool = true if yield(val) }
     elsif arg.is_a? Regexp
-      my_each { |val| bool = true unless val =~ arg }
+      my_each { |val| bool = true if val =~ arg }
     elsif arg.is_a? Class
-      my_each { |val| bool = true unless val.is_a? arg }
+      my_each { |val| bool = true if val.is_a? arg }
     elsif arg
       bool = false
       my_each { |val| bool = true if val == arg && bool == false }
@@ -145,7 +153,7 @@ module Enumerable # a generic method to repaet the values of any enumerable:help
       end
     val
     end
-  end
+end
 
 def multiply_els(arr)
   arr.my_inject { |accumulator, current_val| accumulator * current_val }
