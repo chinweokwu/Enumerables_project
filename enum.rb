@@ -1,15 +1,17 @@
-module Enumerable # a generic method to repaet the values of any enumerable:helps in the reuse of methods in other mehtods
+module Enumerable
   # my_each methods
-  # rubocop:disable RuleByName
   def my_each
     return to_enum(__callee__) unless block_given?
-      # linter issues: linter tries to convert for to each and prints error in linter
-      # pls consider it. 
-    for i in self
-      yield i 
+
+    arr = to_a
+    size = arr.length
+    x = 0
+    until x == size
+      yield(arr[x])
+      x += 1
     end
+    self
   end
-  # rubocop:enable RuleByName
 
   # my_each_with_index
   def my_each_with_index
@@ -57,7 +59,7 @@ module Enumerable # a generic method to repaet the values of any enumerable:help
         bool = true if val && bool == true
         bool = false if (val.nil? || val == false) && bool == true
       end
-      end
+    end
     bool
   end
 
@@ -150,9 +152,9 @@ module Enumerable # a generic method to repaet the values of any enumerable:help
       arr[1...arr.length].my_each do |element|
         val = val.send(acc, element)
       end
-      end
-    val
     end
+    val
+  end
 end
 
 def multiply_els(arr)
