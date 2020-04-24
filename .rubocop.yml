@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 AllCops:
   Exclude:
     - "README.md"
@@ -11,7 +9,7 @@ AllCops:
 Layout/LineLength:
   Max: 120
 Metrics/MethodLength:
-  Max: 30
+  Max: 20
 Metrics/AbcSize:
   Max: 50
 Metrics/ClassLength:

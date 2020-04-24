@@ -1,3 +1,6 @@
+# rubocop: disable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/MethodLength
+
 module Enumerable
   # my_each methods
   def my_each
@@ -160,3 +163,6 @@ end
 def multiply_els(arr)
   arr.my_inject { |accumulator, current_val| accumulator * current_val }
 end
+
+# rubocop: enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/MethodLength:
