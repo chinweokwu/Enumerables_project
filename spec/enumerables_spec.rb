@@ -1,9 +1,10 @@
-require '../lib/enum.rb'
+require './lib/enum'
 
-decsribe Enumerable do
+describe Enumerable do
   let(:arr) { [1, 2, 3, 4, 'hi'] }
   let(:arr_num) { [1, 2, 3, 4, 5, 6] }
   let(:arr_str) { %w[ant bear cat] }
+  let(:arr_nums) {[1, 2i, 3.14]}
 
   context '#my_each' do
     it 'displays enumerable when no block given' do
@@ -37,7 +38,7 @@ decsribe Enumerable do
 
   context '#my_all' do
     it 'displays enumerable when no block is given ' do
-      expect(arr_str.my_all?).to eq(Enumerable)
+      expect(arr_str.my_all?).to eq(true)
     end
 
     it 'returns true when all length is greater than or equal to 3' do
@@ -48,18 +49,18 @@ decsribe Enumerable do
       expect(arr_str.my_all? { |word| word.length >= 4 }).to eq(arr_str.all? { |word| word.length >= 4 })
     end
 
-    it 'return false when all using regex' do
-      expect(arr_str.my_all?(/t/)).to eq(rr_str.all?(/t/))
+    it "" do
+      expect(arr_str.my_all?(/d/)).to eq(arr_str.all?(/d/))
     end
 
-    it 'return true when all is numeric' do
-      expect(arr_num.my_all?(Numeric)).to eq(arr_num.all?(Numeric))
+    it "it return true" do
+      expect([].my_all?).to eq([].all?)
     end
   end
 
   context '#my_any' do
     it 'displays enumerable when no block is given ' do
-      expect(arr_str.my_any?).to be_a(Enumerable)
+      expect(arr_num.my_any?).to eq(arr_num.any?)
     end
 
     it 'returns true when any length is greater than or equal 3' do
@@ -70,18 +71,14 @@ decsribe Enumerable do
       expect(arr_str.my_any? { |word| word.length >= 4 }).to eq(arr_str.any? { |word| word.length >= 4 })
     end
 
-    it 'return false when any using regex' do
-      expect(arr_str.my_any?(/d/)).to eq(arr_str.any?(/d/))
-    end
-
-    it 'return true when any arr_num is an integer' do
-      expect(arr_num.my_any?(Integer)).to eq(arr_num.any?(Integer))
+    it "it return true" do
+      expect([].my_any?).to eq([].any?)
     end
   end
 
   context '#my_none' do
     it 'displays enumerable when no block is given ' do
-      expect(arr_str.my_all?).to be_a(Enumerable)
+      expect(arr_str.my_none?).to eq(arr_str.my_none?)
     end
 
     it 'displays true when word length is equal to 5' do
@@ -90,14 +87,6 @@ decsribe Enumerable do
 
     it 'displays false when word length is greater than or equal to 4' do
       expect(arr_str.my_none? { |word| word.length == 4 }).to eq(arr_str.none? { |word| word.length == 4 })
-    end
-
-    it 'return false when any using regex' do
-      expect(arr_str.my_none?(/d/)).to eq(arr_str.none?(/d/))
-    end
-
-    it 'return false when ' do
-      expect(arr.my_none?(3)).to eq(arr.none?(3))
     end
   end
 
