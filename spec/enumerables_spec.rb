@@ -4,7 +4,7 @@ describe Enumerable do
   let(:arr) { [1, 2, 3, 4, 'hi'] }
   let(:arr_num) { [1, 2, 3, 4, 5, 6] }
   let(:arr_str) { %w[ant bear cat] }
-  let(:arr_nums) {[1, 2i, 3.14]}
+  let(:arr_nums) { [1, 2i, 3.14] }
 
   context '#my_each' do
     it 'displays enumerable when no block given' do
@@ -49,11 +49,11 @@ describe Enumerable do
       expect(arr_str.my_all? { |word| word.length >= 4 }).to eq(arr_str.all? { |word| word.length >= 4 })
     end
 
-    it "" do
+    it '' do
       expect(arr_str.my_all?(/d/)).to eq(arr_str.all?(/d/))
     end
 
-    it "it return true" do
+    it 'it return true' do
       expect([].my_all?).to eq([].all?)
     end
   end
@@ -71,7 +71,7 @@ describe Enumerable do
       expect(arr_str.my_any? { |word| word.length >= 4 }).to eq(arr_str.any? { |word| word.length >= 4 })
     end
 
-    it "it return true" do
+    it 'it return true' do
       expect([].my_any?).to eq([].any?)
     end
   end

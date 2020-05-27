@@ -16,7 +16,7 @@ puts 'my_select'
 
 result = [1, 2, 3, 4, 5, 6].select(&:even?) #=> [2, 4, 6]
 puts result
-block = proc { |num| num = 11 }
+block = proc { |_num| num = 11 }
 puts [2, 4, 7, 11].my_select(&block) #=> [11]
 puts [2, 4, 7, 11].my_select # <Enumerator: [2, 4, 7, 11]:my_select>
 puts [1, 2].my_select { |num| num == 1 } #=> [1]
@@ -81,8 +81,8 @@ puts ary.my_count(&:even?) #=> 3
 puts '-*-*-*-*-*-*-*-*-*-*-*-*-'
 puts 'my_map'
 
-puts (1..4).my_map { |i| i * i } #=> [1, 4, 9, 16]
-puts (1..4).my_map { 'dog' } #=> ["dog", "dog", "dog", "dog"]
+puts(1..4).my_map { |i| i * i } #=> [1, 4, 9, 16]
+puts(1..4).my_map { 'dog' } #=> ["dog", "dog", "dog", "dog"]
 puts %w[a b c].my_map(&:upcase) #=> ["A", "B", "C"]
 puts %w[a b c].my_map(&:class) #=> [String, String, String]
 puts [2, 4, 7, 11].my_map # <Enumerator: [2, 4, 7, 11]:my_map
@@ -98,9 +98,9 @@ end
 
 puts longest #=> "sheep"
 
-puts (5..10).my_inject { |sum, n| sum + n } #=> 45
-puts (5..10).my_inject(2) { |sum, n| sum + n } #=> 47
-puts (1..5).my_inject(4) { |prod, n| prod * n } #=> 480
+puts(5..10).my_inject { |sum, n| sum + n } #=> 45
+puts(5..10).my_inject(2) { |sum, n| sum + n } #=> 47
+puts(1..5).my_inject(4) { |prod, n| prod * n } #=> 480
 puts [1, 1, 1].my_inject(:+) #=> 3
 puts [1, 1, 1].my_inject(2, :+) #=> 5
 
