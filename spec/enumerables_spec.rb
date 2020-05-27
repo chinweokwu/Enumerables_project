@@ -32,7 +32,7 @@ describe Enumerable do
     end
 
     it 'return the selected values' do
-      expect(arr.my_select { |_nums| nums = 4 }).to eq(arr.select { |_nums| nums = 4 })
+      expect(arr.my_select { |_nums| _nums = 4 }).to eq(arr.select { |_nums| _nums = 4 })
     end
   end
 
