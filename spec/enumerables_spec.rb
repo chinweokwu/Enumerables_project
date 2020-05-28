@@ -12,7 +12,7 @@ describe Enumerable do
     end
 
     it 'returns array when block given' do
-      expect(arr.my_each { |x| x }).to eq(arr.each { |x| x })
+      expect((arr.my_each) { |x| x }).to eq(arr.each { |x| x })
     end
   end
 
