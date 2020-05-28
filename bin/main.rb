@@ -19,7 +19,7 @@ puts result
 block = proc { |_num| _num = 11 }
 puts [2, 4, 7, 11].my_select(&block) #=> [11]
 puts [2, 4, 7, 11].my_select # <Enumerator: [2, 4, 7, 11]:my_select>
-puts ([1, 2].my_select { |num| num == 1 }) #=> [1]
+puts [1, 2].my_select { |num| num == 1 } #=> [1]
 
 puts '-*-*-*-*-*-*-*-*-*-*-*-*-'
 puts 'my_all?'
