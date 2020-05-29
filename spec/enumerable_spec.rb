@@ -2,7 +2,7 @@
 require './enumerable.rb'
 
 RSpec.describe Enumerable do
-  array = [11, 2, 3, 56]
+  let(:array) [11, 2, 3, 56]
 
   describe '.my_each' do
     context 'when receive a block' do
