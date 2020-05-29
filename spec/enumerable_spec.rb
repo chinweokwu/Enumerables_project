@@ -71,6 +71,14 @@ RSpec.describe Enumerable do
       it 'returns false if one or more values are falsy' do
         expect([nil, true, 99].my_all?).to eq false
       end
+
+      it 'return false if array is not a number' do
+        expect(%w[ant bear cat].my_all?(/t/)).to eq false
+      end
+
+      it 'returns true if numeric' do
+        expect([1, 2i, 3.14].my_all?(Numeric)).to eq true
+      end
     end
   end
 
@@ -90,6 +98,10 @@ RSpec.describe Enumerable do
         expect([nil, true, 99].my_any?).to eq true
       end
 
+      it 'returns true if the array is an integer'do
+        expect([nil, true, 99].my_any?(Integer)).to eq true
+      end
+
       it 'returns false if one or more values are falsy' do
         expect([].my_any?).to eq false
       end
@@ -104,6 +116,22 @@ RSpec.describe Enumerable do
 
       it 'returns false if one or more values follow the logic in block' do
         expect(%w[ant bear cat].my_none? { |word| word.length >= 4 }).to eq false
+      end
+
+      it 'returns true if non is a digit' do
+        expect(%w{ant bear cat}.my_none?(/d/)).to eq true
+      end
+
+      it 'it returns flase if one array is a float' do
+        expect([1, 3.14, 42].my_none?(Float)).to eq false
+      end
+
+      it 'it returns true when passed an empty array' do
+        expect([].my_none?).to eq true
+      end
+
+      it 'return true when nil is passed to my_none?' do 
+        expect([nil].my_none?).to eq true
       end
     end
 
@@ -122,6 +150,10 @@ RSpec.describe Enumerable do
     context 'when receive an argument' do
       it 'returns number of values that equals to the argument condition' do
         expect(array.my_count(&:even?)).to eq 2
+      end
+
+      it 'returns the count of even values' do
+        expect([ 1,2,3,4,5,6].count{ |x| x%2==0 }).to eq 3
       end
     end
 
