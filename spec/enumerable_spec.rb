@@ -98,7 +98,7 @@ RSpec.describe Enumerable do
         expect([nil, true, 99].my_any?).to eq true
       end
 
-      it 'returns true if the array is an integer'do
+      it 'returns true if the array is an integer' do
         expect([nil, true, 99].my_any?(Integer)).to eq true
       end
 
@@ -119,7 +119,7 @@ RSpec.describe Enumerable do
       end
 
       it 'returns true if non is a digit' do
-        expect(%w{ant bear cat}.my_none?(/d/)).to eq true
+        expect(%w[ant bear cat].my_none?(/d/)).to eq true
       end
 
       it 'it returns flase if one array is a float' do
@@ -130,7 +130,7 @@ RSpec.describe Enumerable do
         expect([].my_none?).to eq true
       end
 
-      it 'return true when nil is passed to my_none?' do 
+      it 'return true when nil is passed to my_none?' do
         expect([nil].my_none?).to eq true
       end
     end
@@ -153,7 +153,7 @@ RSpec.describe Enumerable do
       end
 
       it 'returns the count of even values' do
-        expect([ 1,2,3,4,5,6].count{ |x| x%2==0 }).to eq 3
+        expect([1, 2, 3, 4, 5, 6].count(&:even?)).to eq 3
       end
     end
 
